@@ -41,7 +41,7 @@ namespace BetterFillSpheres
             };
 
         }
-        public float Grey
+        public float Greyscale
         {
             get
             {
