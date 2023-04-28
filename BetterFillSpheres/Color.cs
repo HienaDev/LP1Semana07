@@ -41,11 +41,11 @@ namespace BetterFillSpheres
             };
 
         }
-        public float Greyscale
+        public byte Greyscale
         {
             get
             {
-                return ((Red + Green + Blue) / 3f);
+                return (byte)((Red + Green + Blue) / 3);
             }
         }
 
