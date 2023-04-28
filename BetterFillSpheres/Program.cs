@@ -4,110 +4,59 @@ namespace BetterFillSpheres
 {
     public class Color
     {
-        private byte red;
-        private byte green;
-        private byte blue;
-        private byte alpha;
+        public byte Red { get; set; }
+        public byte Green { get; set; }
+        public byte Blue { get; set; }
+        public byte Alpha { get; set; }
 
         public Color(byte red, byte green, byte blue, byte alpha)
         {
-            this.red = red;
-            this.green = green;
-            this.blue = blue;
-            this.alpha = alpha;
+            Red = red;
+            Green = green;
+            Blue = blue;
+            Alpha = alpha;
         }
 
         public Color(byte red, byte green, byte blue)
         {
-            this.red = red;
-            this.green = green;
-            this.blue = blue;
-            this.alpha = 255;
+            Red = red;
+            Green = green;
+            Blue = blue;
+            Alpha = 255;
         }
 
-        public byte Red
+        public float Grey
         {
             get
             {
-                return red;
-            }
-            set
-            {
-                red = value;
-            }
-        }
-
-        public byte Green
-        {
-            get
-            {
-                return green;
-            }
-            set
-            {
-                green = value;
-            }
-        }
-
-        public byte Blue
-        {
-            get
-            {
-                return blue;
-            }
-            set
-            {
-                blue = value;
-            }
-        }
-
-        public byte Alpha
-        {
-            get
-            {
-                return alpha;
-            }
-            set
-            {
-                alpha = value;
-            }
-        }
-
-
-        public byte Grey
-        {
-            get
-            {
-                return (byte)((red + green + blue) / 3);
+                return ((Red + Green + Blue) / 3f);
             }
         }
     }
 
     public class Sphere
     {
-        private readonly Color color;
-        private float radius;
-        private int throwTimes;
+        private Color Color { get; }
+        public float Radius { get; set; }
+        public int ThrowTimes { get; set; } = 0;
 
         public Sphere(Color color, float radius)
         {
-            this.color = color;
-            this.radius = radius;
-            throwTimes = 0;
+            Color = color;
+            Radius = radius;
         }
 
         public void Pop()
         {
-            radius = 0;
+            Radius = 0;
         }
 
         public void Throw()
         {
-            if (radius > 0)
-                throwTimes++;
+            if (Radius > 0)
+                ThrowTimes++;
         }
 
-        public int GetTimesThrown() => throwTimes;
 
     }
     class Program
@@ -120,15 +69,15 @@ namespace BetterFillSpheres
             Sphere redBall = new Sphere(colorRed, 5f);
             Sphere greenBall = new Sphere(colorGreen, 2f);
 
-            Console.WriteLine($"Red Ball was thrown {redBall.GetTimesThrown()} times with color ({colorRed.Red}, {colorRed.Green}, {colorRed.Blue}, {colorRed.Alpha}) and Grey value: {colorRed.Grey}");
+            Console.WriteLine($"Red Ball was thrown {redBall.ThrowTimes} times with color ({colorRed.Red}, {colorRed.Green}, {colorRed.Blue}, {colorRed.Alpha}) and Grey value: {colorRed.Grey}");
             redBall.Throw();
-            Console.WriteLine($"Red Ball was thrown {redBall.GetTimesThrown()} times with color ({colorRed.Red}, {colorRed.Green}, {colorRed.Blue}, {colorRed.Alpha}) and Grey value: {colorRed.Grey}");
-            Console.WriteLine($"Green Ball was thrown {greenBall.GetTimesThrown()} times with color ({colorGreen.Red}, {colorGreen.Green}, {colorGreen.Blue}, {colorGreen.Alpha}) and Grey value: {colorGreen.Grey}");
+            Console.WriteLine($"Red Ball was thrown {redBall.ThrowTimes} times with color ({colorRed.Red}, {colorRed.Green}, {colorRed.Blue}, {colorRed.Alpha}) and Grey value: {colorRed.Grey}");
+            Console.WriteLine($"Green Ball was thrown {greenBall.ThrowTimes} times with color ({colorGreen.Red}, {colorGreen.Green}, {colorGreen.Blue}, {colorGreen.Alpha}) and Grey value: {colorGreen.Grey}");
             greenBall.Throw();
-            Console.WriteLine($"Green Ball was thrown {greenBall.GetTimesThrown()} times with color ({colorGreen.Red}, {colorGreen.Green}, {colorGreen.Blue}, {colorGreen.Alpha}) and Grey value: {colorGreen.Grey}");
+            Console.WriteLine($"Green Ball was thrown {greenBall.ThrowTimes} times with color ({colorGreen.Red}, {colorGreen.Green}, {colorGreen.Blue}, {colorGreen.Alpha}) and Grey value: {colorGreen.Grey}");
             greenBall.Pop();
             greenBall.Throw();
-            Console.WriteLine($"Green Ball was thrown {greenBall.GetTimesThrown()} times with color ({colorGreen.Red}, {colorGreen.Green}, {colorGreen.Blue}, {colorGreen.Alpha}) and Grey value: {colorGreen.Grey}");
+            Console.WriteLine($"Green Ball was thrown {greenBall.ThrowTimes} times with color ({colorGreen.Red}, {colorGreen.Green}, {colorGreen.Blue}, {colorGreen.Alpha}) and Grey value: {colorGreen.Grey}");
         }
     }
 }
