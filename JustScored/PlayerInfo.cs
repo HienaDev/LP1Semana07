@@ -11,7 +11,15 @@ namespace JustScored
         private int gamesPlayed;
         private int gamesWon;
 
-        private string Name { get; }
+        public string Name { get; }
+
+        public PlayerInfo(string name)
+        {
+            Name = name;
+            gamesPlayed = 0;
+            gamesWon = 0;
+            maxScore = 0;
+        }
 
         public float MaxScore
         {
@@ -21,6 +29,24 @@ namespace JustScored
                 if (value > maxScore)
                     maxScore = value;
             }
+        }
+
+        public float RateOfSuccess
+        {
+            get
+            {
+                if (gamesPlayed > 0)
+                    return (float)gamesWon / (float)gamesPlayed;
+                else
+                    return 0;
+            }
+        }
+
+        public void AddGame(bool win)
+        {
+            gamesPlayed += 1;
+            if (win)
+                gamesWon += 1;
         }
     }
 }
