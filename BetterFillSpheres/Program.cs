@@ -2,63 +2,7 @@
 
 namespace BetterFillSpheres
 {
-    public class Color
-    {
-        public byte Red { get; set; }
-        public byte Green { get; set; }
-        public byte Blue { get; set; }
-        public byte Alpha { get; set; }
-
-        public Color(byte red, byte green, byte blue, byte alpha)
-        {
-            Red = red;
-            Green = green;
-            Blue = blue;
-            Alpha = alpha;
-        }
-
-        public Color(byte red, byte green, byte blue)
-        {
-            Red = red;
-            Green = green;
-            Blue = blue;
-            Alpha = 255;
-        }
-
-        public float Grey
-        {
-            get
-            {
-                return ((Red + Green + Blue) / 3f);
-            }
-        }
-    }
-
-    public class Sphere
-    {
-        private Color Color { get; }
-        public float Radius { get; set; }
-        public int ThrowTimes { get; set; } = 0;
-
-        public Sphere(Color color, float radius)
-        {
-            Color = color;
-            Radius = radius;
-        }
-
-        public void Pop()
-        {
-            Radius = 0;
-        }
-
-        public void Throw()
-        {
-            if (Radius > 0)
-                ThrowTimes++;
-        }
-
-
-    }
+    
     class Program
     {
         static void Main(string[] args)
@@ -78,6 +22,8 @@ namespace BetterFillSpheres
             greenBall.Pop();
             greenBall.Throw();
             Console.WriteLine($"Green Ball was thrown {greenBall.ThrowTimes} times with color ({colorGreen.Red}, {colorGreen.Green}, {colorGreen.Blue}, {colorGreen.Alpha}) and Grey value: {colorGreen.Grey}");
+            Console.WriteLine($"Green Ball name: {Color.Name(greenBall.Color)}");
+            Console.WriteLine($"Red Ball name: {Color.Name(redBall.Color)}");
         }
     }
 }
